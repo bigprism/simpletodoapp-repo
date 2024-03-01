@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Todo Items</h1>
+
+<ul class="list-group">
+{% for todo_item in todo_items %}
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col-md-10">
+        <h4>{{ todo_item.title }}</h4>
+        <p>{{ todo_item.description }}</p>
+        <p>Due Date: {{ todo_item.due_date }}</p>
+      </div>
+      <div class="col-md-2">
+        <a href="{% url 'update_todo_item' todo_item.id %}" class="btn btn-sm btn-primary">Edit</a>
+        <a href="{% url 'delete_todo_item' todo_item.id %}" class="btn btn-sm btn-danger">Delete</a>
+      </div>
+    </div>
+  </li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'add_todo_item' %}" class="btn btn-primary">Add Todo Item</a>
+{% endblock %}
